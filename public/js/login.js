@@ -31,9 +31,31 @@ const signupFormHandler = async (event) => {
   const name = document.querySelector('.nameSignup').value.trim();
   const email = document.querySelector('.emailSignup').value.trim();
   const password = document.querySelector('.passwordSignup').value.trim();
+  const confirmPassword = document.querySelector('.confirmPasswordSignup').value.trim();
 
   // Send a POST request to the API endpoint to create a new user
-  if (name && email && password) {
+  let alertMessage = "";
+      
+  if (!name) {
+    alertMessage += "Missing name\n";
+  }
+  if (!email) {
+    alertMessage += "Missing email\n";
+  }
+  if (!password) {
+    alertMessage += "Missing password\n";
+  }
+  if (password.length < 8) {
+    alertMessage += "Password is smaller than 8 characters\n";
+  }
+  if (!confirmPassword || password !== confirmPassword) {
+    alertMessage += "Passwords don't match\n";
+  }
+
+  if (alertMessage.length !== 0) {
+    alert(alertMessage);
+
+  } else if (name && email && password) {
     const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
