@@ -4,7 +4,7 @@
 // import all API routes
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
-const blogRoutes = require('./blogPostRoutes');
+const blogPostRoutes = require('./blogPostRoutes');
 
 router.use('/users', userRoutes);
 router.use('/posts', blogPostRoutes);

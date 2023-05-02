@@ -1,0 +1,55 @@
+{{! this document handles login }}
+
+<div class='flex justify-center mt-12'>
+  <div class='h-fit w-4/5 border-solid border-4 border-amber-800'>
+    <div class='flex justify-between items-center bg-amber-800 text-slate-800'>
+      <h2 class='ml-2 text-2xl font-bold'>Login</h2>
+    </div>
+    <div class='p-4'>
+      <form class='login-form' action='login.php' method='post'>
+        <div class='mb-4'>
+          <label
+            for='email'
+            class='block font-bold mb-2 text-slate-800'
+          >Email</label>
+          <input
+            type='text'
+            placeholder='Enter Email'
+            name='email'
+            required
+            class='w-full border border-gray-300 p-2 rounded-lg emailLogin'
+          />
+        </div>
+        <div class='mb-4'>
+          <label
+            for='password'
+            class='block font-bold mb-2 text-slate-800'
+          >Password</label>
+          <input
+            type='password'
+            placeholder='Enter Password'
+            name='password'
+            required
+            class='w-full border border-gray-300 p-2 rounded-lg passwordLogin'
+          />
+        </div>
+        <div class='flex justify-between'>
+          <button
+            type='submit'
+            class='h-12 bg-amber-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+          >
+            Login
+          </button>
+          <button
+            type='submit'
+            class='bg-amber-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+          >
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src='./js/login.js'></script>
