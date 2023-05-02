@@ -3,8 +3,8 @@ const loginFormHandler = async (event) => {
   event.preventDefault();
 
   // Collect values from the login form
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  const email = document.querySelector('.emailLogin').value.trim();
+  const password = document.querySelector('.passwordLogin').value.trim();
 
   if (email && password) {
     // Send a POST request to the API endpoint
@@ -28,9 +28,9 @@ const signupFormHandler = async (event) => {
   event.preventDefault();
 
   // Collect values from the signup form
-  const name = document.querySelector('#name-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
+  const name = document.querySelector('.nameSignup').value.trim();
+  const email = document.querySelector('.emailSignup').value.trim();
+  const password = document.querySelector('.passwordSignup').value.trim();
 
   // Send a POST request to the API endpoint to create a new user
   if (name && email && password) {
