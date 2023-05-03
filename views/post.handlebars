@@ -1,0 +1,60 @@
+{{! blogpost main body }}
+<div class='flex justify-center mt-12'>
+  <div class='h-fit w-4/5 border-solid border-4 border-amber-800'>
+    <div class='flex justify-between items-center bg-amber-800 text-slate-800'>
+      <h2 class='ml-2 text-2xl'>{{blogpost.title}}</h2>
+      <h3 class='mr-2 text-sm'>Posted by
+        {{blogpost.user.name}}
+        on
+        {{format_date blogpost.date_created}}
+      </h3>
+    </div>
+    <div class='p-4'>
+      <p class='text-amber-800'>
+        {{blogpost.content}}
+      </p>
+    </div>
+  </div>
+</div>
+
+{{! blogpost comments }}
+{{#each comments}}{{/each}}
+
+{{! comment form }}
+{{#if logged_in}}
+  <div class='flex justify-center mt-4'>
+    <div class='h-fit w-4/5 border-solid border-4 border-amber-800'>
+      <div
+        class='flex justify-between items-center bg-amber-800 text-slate-800'
+      >
+        <h2 class='ml-2 text-2xl font-bold'></h2>
+      </div>
+      <div class='p-4'>
+        <form class='comment' {{!-- action='comment.php' method='post'> --}}>
+          <div class='mb-4'>
+            <label
+              for='comment'
+              class='block font-bold mb-2 text-slate-800'
+            >Comment</label>
+            <input
+              type='comment'
+              name='newcomment'
+              required
+              class='h-32 w-full border border-gray-300 p-2 rounded-lg'
+            />
+          </div>
+          <div class='flex-col'>
+            <button
+              type='submit'
+              class='h-12 w-full bg-amber-800 hover:bg-blue-700 text-slate-800 font-bold py-2 px-4 rounded'
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src='/public/js/comment.js'></script>
+{{/if}}
