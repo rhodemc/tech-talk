@@ -4,8 +4,8 @@ const apiRoutes = require('./api');
 const homeRoutes = require('./homeRoutes');
 
 // set up router middleware
-router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
+router.use('/', homeRoutes);
 
 // export the router
 module.exports = router;
