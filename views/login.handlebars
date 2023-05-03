@@ -6,10 +6,10 @@
       <h2 class='ml-2 text-2xl font-bold'>Login</h2>
     </div>
     <div class='p-4'>
-      <form class='' {{! action='login.php' method='post'> }}>
+      <form class='login-form' {{! action='login.php' method='post'> }}>
         <div class='mb-4'>
           <label
-            for='email'
+            for='email-login'
             class='block font-bold mb-2 text-slate-800'
           >Email</label>
           <input
@@ -17,12 +17,13 @@
             placeholder='Enter Email'
             name='email'
             required
-            class='w-full border border-gray-300 p-2 rounded-lg emailLogin'
+            class='w-full border border-gray-300 p-2 rounded-lg'
+            id='email-login'
           />
         </div>
         <div class='mb-4'>
           <label
-            for='password'
+            for='password-login'
             class='block font-bold mb-2 text-slate-800'
           >Password</label>
           <input
@@ -30,17 +31,17 @@
             placeholder='Enter Password'
             name='password'
             required
-            class='w-full border border-gray-300 p-2 rounded-lg passwordLogin'
+            class='w-full border border-gray-300 p-2 rounded-lg'
+            id='password-login'
           />
         </div>
         <div class='flex justify-between'>
-          <a
-            href='/dashboard'
+          <button
             type='submit'
             class='h-12 bg-amber-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
           >
             Login
-          </a>
+          </button>
           <a
             href='/signup'
             class='bg-amber-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center'
@@ -53,4 +54,4 @@
   </div>
 </div>
 
-<script src='/public/js/login.js'></script>
+<script src='/js/login.js'></script>

@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { User, BlogPost, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// GET all blogposts for homepage and join with user data
+// GET all blogposts and join with user data
 router.get('/', async (req, res) => {
   try {
     const blogData = await BlogPost.findAll({
@@ -44,7 +44,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     res.render('dashboard', {
       blogPosts,
-      // url: req.originalUrl,
+      url: req.originalUrl,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -52,14 +52,18 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-// GET createblogpost page
-router.get('/createblogpost', withAuth, async (req, res) => {
+// GET createpost page
+router.get('/createpost', withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id);
+    const userData = await User.findOne({
+      where: {
+        id: req.session.user_id,
+      },
+    });
     const user = userData.get({ plain: true });
-    res.render('createblogpost', {
+    res.render('createpost', {
       user,
-      // url: req.originalUrl,
+      url: req.originalUrl,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -67,15 +71,25 @@ router.get('/createblogpost', withAuth, async (req, res) => {
   }
 });
 
-// GET updateblogpost page
-router.get('/updateblogpost/:id', withAuth, async (req, res) => {
+// GET editpost page
+router.get('/editpost/:id', withAuth, async (req, res) => {
   try {
-    const blogData = await BlogPost.findByPk(req.params.id);
+    const blogData = await BlogPost.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: User,
+          model: Comment,
+        },
+      ],
+    });
     const blogPost = blogData.get({ plain: true });
     // console.log(blogPost);
-    res.render('updateblogpost', {
+    res.render('editpost', {
       blogPost,
-      // url: req.originalUrl,
+      url: req.originalUrl,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -84,9 +98,12 @@ router.get('/updateblogpost/:id', withAuth, async (req, res) => {
 });
 
 // GET blogpost by id
-router.get('/blogpost/:id', withAuth, async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
-    const blogData = await BlogPost.findByPk(req.params.id, {
+    const blogData = await BlogPost.findOne({
+      where: {
+        id: req.params.id,
+      },
       include: [
         {
           model: User,
@@ -108,12 +125,11 @@ router.get('/blogpost/:id', withAuth, async (req, res) => {
         },
       ],
     });
-    comments = commentData.map((comment) => comment.get({ plain: true }));
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
 
-    res.render('blogpost', {
+    res.render('post', {
       blogPost,
       comments,
-      // url: req.originalUrl,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -125,7 +141,7 @@ router.get('/blogpost/:id', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
@@ -137,7 +153,7 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
