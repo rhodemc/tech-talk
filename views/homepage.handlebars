@@ -1,16 +1,17 @@
 <!-- Loop over each object in the blogposts array -->
-{{#each blogposts}}
+{{#each blogPosts as |blogpost|}}
   <div class='flex justify-center mt-12'>
     <div class='h-fit w-4/5 border-solid border-4 border-amber-800'>
       <div
-        class='flex justify-between items-center bg-amber-800 text-slate-800'>
+        class='flex justify-between items-center bg-amber-800 text-slate-800'
+      >
         <h2 class='ml-2 text-2xl'><a
             href='/blogpost/{{blogpost.id}}'
           >{{blogpost.title}}</a></h2>
         <h3 class='mr-2 text-sm'>Posted by
           {{blogpost.user.name}}
           on
-          {{format_date project.date_created}}</h3>
+          {{format_date blogpost.date_created}}</h3>
       </div>
       <div class='p-4'>
         <p class='text-amber-800'>
