@@ -21,9 +21,9 @@ const signupFormHandler = async (event) => {
     console.log(response);
 
     if (response.ok) {
-      document.location.href('/dashboard');
+      window.location.href = '/';
     } else {
-      alert(response.statusText);
+      alert('Failed to sign up!');
     }
   }
 };

@@ -4,7 +4,7 @@
             <h2 class="ml-2 text-2xl font-bold">Create Post</h2>
         </div>
             <div class="p-4">
-                <form {{!-- action="update.php" method="post" --}}>
+                <form id="createNewPost" {{!-- action="update.php" method="post" --}}>
                     <div class="mb-4">
                         <label for="title" class="block font-bold mb-2 text-slate-800">Title</label>
                             <input
@@ -34,10 +34,10 @@
         </div>
         <div class="flex justify-center">
             <div class="mt-4 ml-8 bg-amber-800 text-slate-800 rounded flex justify-center">
-                <button class="font-bold text-2xl m-4">+ New Post</button>
+                <button class="font-bold text-2xl m-4 getPost">+ New Post</button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/public/js/create.js"></script>
+<script src="/js/create.js"></script>

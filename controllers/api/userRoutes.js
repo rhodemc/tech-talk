@@ -3,15 +3,16 @@ const { User } = require('../../models');
 
 // POST new user
 router.post('/', async (req, res) => {
+  console.log('foofarts');
   try {
     const newUser = await User.create(req.body);
 
     req.session.save(() => {
       req.session.user_id = newUser.id;
       req.session.logged_in = true;
-    });
 
-    res.status(200).json(newUser);
+      res.status(200).json(newUser);
+    });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -28,8 +29,8 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again!' });
       return;
     }
-    // removing await but may need to add back in
-    const validPassword = userData.checkPassword(req.body.password);
+    
+    const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res

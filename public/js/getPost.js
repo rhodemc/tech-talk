@@ -1,6 +1,6 @@
 const getPost = document.getElementsByClassName('getPost');
 
-// GET blog post when button is clicked
-getPost.addEventListener('click', async (event) => {
-  window.location.href = '/createblogpost';
+// GET new blog post template when button is clicked
+getPost.addEventListener('click', (event) => {
+  window.location.href = '/createpost';
 });

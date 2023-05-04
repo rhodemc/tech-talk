@@ -1,6 +1,6 @@
-const createNewPost = document.getElementsByClassName('createNewPost');
+const createNewPost = document.getElementsById('createNewPost');
 
-createNewPost.addEventListener('submit', async (event) => {
+createNewPost.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const { title: titleInput, content: contentInput } = event.target.elements;
@@ -10,7 +10,7 @@ createNewPost.addEventListener('submit', async (event) => {
     content: contentInput.value,
   };
 
-  fetch(`/api/blogpost`, {
+  fetch(`/api/blogposts`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ createNewPost.addEventListener('submit', async (event) => {
   })
     .then((response) => {
       if (response.status === 200) {
-        window.location.href = `/dashboard`;
+        window.location.href = '/dashboard';
       }
     })
     .catch((err) => {
