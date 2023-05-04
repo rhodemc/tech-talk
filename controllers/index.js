@@ -5,7 +5,11 @@ const homeRoutes = require('./homeRoutes');
 
 // set up router middleware
 router.use('/api', apiRoutes);
-router.use(homeRoutes);
+router.use('/', homeRoutes);
+
+router.use((req, res) => {
+  res.status(404).end();
+});
 
 // export the router
 module.exports = router;
