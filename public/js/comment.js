@@ -1,7 +1,7 @@
-const comment = document.getElementsByClassName('comment');
+const commentForm = document.getElementsById('comment');
 
 // POST new comment when form is submitted
-comment.addEventListener('submit', async (event) => {
+commentForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const { content: contentInput } = event.target.elements;
@@ -13,7 +13,7 @@ comment.addEventListener('submit', async (event) => {
 
   const blogpostid = event.target.dataset.blogpostid;
 
-  fetch(`/api/comment`, {
+  fetch(`/api/comments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ comment.addEventListener('submit', async (event) => {
   })
     .then((response) => {
       if (response.status === 200) {
-        window.location.href = `/blogpost/${blogpostid}`;
+        window.location.href = `/post/${blogpostid}`;
       }
     })
     .catch((err) => {

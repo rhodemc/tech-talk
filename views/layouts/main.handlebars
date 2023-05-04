@@ -3,7 +3,6 @@
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Tech Talk</title>
-    <link rel='stylesheet' href='/css/jass.css' />
     <link rel='stylesheet' href='/public/css/style.css' />
     <script src='https://cdn.tailwindcss.com'></script>
   </head>
@@ -12,14 +11,16 @@
     <header class='p-2 h-36 bg-amber-800'>
       <div class='ml-6'>
         <nav class='space-x-12 text-slate-800 font-bold'>
-          <a href='/' class='' id='home'>HOME</a>
-          <a href='/dashboard' class='' id='dashboard'>DASHBOARD</a>
+          <a href='/' id='home'>HOME</a>
+          <a href='/dashboard' id='dashboard'>DASHBOARD</a>
+
           <!-- Conditionally render login or logout links -->
           {{#if logged_in}}
-            <a href='/' class='' id='logout'>LOGOUT</a>
+            <a href='/logout' id='logout'>LOGOUT</a>
           {{else}}
-            <a href='/login' class='' id='login'>LOGIN</a>
+            <a href='/login' id='login'>LOGIN</a>
           {{/if}}
+
         </nav>
       </div>
       <div
@@ -36,7 +37,7 @@
 
     <!-- Render script for logged in users only -->
     {{#if logged_in}}
-      <script src='/public/js/logout.js'></script>
+      <script src='/js/logout.js'></script>
     {{/if}}
   </body>
 </html>

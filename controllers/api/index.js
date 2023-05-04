@@ -7,8 +7,6 @@ const userRoutes = require('./userRoutes');
 const blogPostRoutes = require('./blogPostRoutes');
 const commentRoutes = require('./commentRoutes');
 
-// q code can't access user routes, why?
-// a need to export the router in userRoutes.js
 router.use('/users', userRoutes);
 router.use('/blogposts', blogPostRoutes);
 router.use('/comments', commentRoutes);

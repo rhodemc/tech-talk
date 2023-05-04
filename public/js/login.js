@@ -17,8 +17,8 @@ const loginFormHandler = async (event) => {
     console.log(response);
 
     if (response.ok) {
-      // If successful, redirect the browser to the dashboard
-      document.location.href('/dashboard');
+      // If successful, redirect the browser to main
+      window.location.href = '/';
     } else {
       alert(response.statusText);
     }
@@ -29,3 +29,5 @@ const loginFormHandler = async (event) => {
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
+
+//signup in different file
