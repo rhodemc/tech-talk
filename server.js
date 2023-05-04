@@ -1,6 +1,7 @@
 // this file is the entry point for the server
 
 // necessary packages
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
