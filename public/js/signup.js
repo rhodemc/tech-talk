@@ -9,10 +9,9 @@ const signupFormHandler = async (event) => {
   const confirmPassword = document
     .querySelector('#confirm-password-signup')
     .value.trim();
-  console.log(name, email, password, confirmPassword);
 
   // Send a POST request to the API endpoint to create a new user
-  if (name && email && password) {
+  if (name && email && password === confirmPassword) {
     const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
@@ -21,7 +20,7 @@ const signupFormHandler = async (event) => {
     console.log(response);
 
     if (response.ok) {
-      window.location.href = '/';
+      document.location.replace('/dashboard');
     } else {
       alert('Failed to sign up!');
     }
