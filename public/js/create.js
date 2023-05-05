@@ -1,6 +1,4 @@
-const createNewPost = document.getElementsById('createNewPost');
-
-createNewPost.addEventListener('submit', (event) => {
+const createFormHandler = async (event) => {
   event.preventDefault();
 
   const { title: titleInput, content: contentInput } = event.target.elements;
@@ -19,10 +17,14 @@ createNewPost.addEventListener('submit', (event) => {
   })
     .then((response) => {
       if (response.status === 200) {
-        window.location.href = '/dashboard';
+        document.location.replace('/dashboard');
       }
     })
     .catch((err) => {
       console.log(err);
     });
-});
+};
+
+document
+  .querySelector('.create-post')
+  .addEventListener('submit', createFormHandler);
