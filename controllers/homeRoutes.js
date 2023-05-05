@@ -99,45 +99,45 @@ router.get('/createpost', withAuth, async (req, res) => {
 //   }
 // });
 
-// // GET blogpost by id
-// router.get('/post/:id', withAuth, async (req, res) => {
-//   try {
-//     let blogData = await BlogPost.findOne({
-//       where: {
-//         id: req.params.id,
-//       },
-//       include: [
-//         {
-//           model: User,
-//           model: Comment,
-//         },
-//       ],
-//     });
+// GET blogpost by id
+router.get('/post/:id', withAuth, async (req, res) => {
+  try {
+    let blogData = await BlogPost.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: User,
+          model: Comment,
+        },
+      ],
+    });
 
-//     blogData = blogData.get({ plain: true });
+    blogData = blogData.get({ plain: true });
 
-//     let commentData = await Comment.findAll({
-//       where: {
-//         blogpost_id: req.params.id,
-//       },
-//       include: [
-//         {
-//           model: User,
-//           model: BlogPost,
-//         },
-//       ],
-//     });
-//     commentData = commentData.map((comment) => comment.get({ plain: true }));
+    let commentData = await Comment.findAll({
+      where: {
+        blogpost_id: req.params.id,
+      },
+      include: [
+        {
+          model: User,
+          model: BlogPost,
+        },
+      ],
+    });
+    commentData = commentData.map((comment) => comment.get({ plain: true }));
 
-//     res.render('post', {
-//       blogData,
-//       commentData,
-//       logged_in: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('post', {
+      blogData,
+      commentData,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
