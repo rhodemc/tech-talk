@@ -1,11 +1,32 @@
 {{! get each previously written post }}
-{{#each blogposts}}{{/each}}
+{{#each blogposts as |blogpost|}}
+  <div class='flex justify-center mt-12'>
+    <div class='h-fit w-4/5 border-solid border-4 border-amber-800'>
+      <div
+        class='flex justify-between items-center bg-amber-800 text-slate-800'
+      >
+        <h2 class='ml-2 text-2xl'><a
+            href='/post/{{blogpost.id}}'
+          >{{blogpost.title}}</a></h2>
+        <h3 class='mr-2 text-sm'>Posted by
+          {{blogpost.user.name}}
+          on
+          {{format_date blogpost.date_created}}</h3>
+      </div>
+      <div class='p-4'>
+        <p class='text-amber-800'>
+          {{blogpost.content}}
+        </p>
+      </div>
+    </div>
+  </div>
+{{/each}}
 
 <div class='flex justify-center mt-96'>
   <div
     class='bg-amber-800 text-slate-800 rounded flex items-center justify-center'
   >
-    <button class='font-bold text-2xl m-4 getNewTemplate createNewPost'>+ New Post</button>
+    <button class='font-bold text-2xl m-4 new-post-template'>+ New Post</button>
   </div>
 </div>
 

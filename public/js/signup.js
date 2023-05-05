@@ -17,13 +17,15 @@ const signupFormHandler = async (event) => {
       body: JSON.stringify({ name, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-    console.log(response);
 
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to sign up!');
-    }
+    setTimeout(() => {
+      console.log(response);
+      if (response.ok) {
+        document.location.replace('/dashboard');
+      } else {
+        alert('Failed to sign up!');
+      }
+    }, 1000);
   }
 };
 

@@ -2,6 +2,7 @@ const createFormHandler = async (event) => {
   event.preventDefault();
 
   const { title: titleInput, content: contentInput } = event.target.elements;
+  console.log(titleInput, contentInput);
 
   const postData = {
     title: titleInput.value,
