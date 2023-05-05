@@ -54,24 +54,24 @@ router.get('/', async (req, res) => {
 //   }
 // });
 
-// // GET createpost page
-// router.get('/createpost', withAuth, async (req, res) => {
-//   try {
-//     let userData = await User.findOne({
-//       where: {
-//         id: req.session.user_id,
-//       },
-//     });
-//     userData = userData.get({ plain: true });
-//     res.render('createpost', {
-//       userData,
-//       url: req.originalUrl,
-//       logged_in: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// GET createpost page
+router.get('/createpost', withAuth, async (req, res) => {
+  try {
+    let userData = await User.findOne({
+      where: {
+        id: req.session.user_id,
+      },
+    });
+    userData = userData.get({ plain: true });
+    res.render('createpost', {
+      userData,
+      url: req.originalUrl,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // // GET editpost page
 // router.get('/editpost/:id', withAuth, async (req, res) => {
@@ -149,7 +149,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-
+    console.log({ user });
     res.render('dashboard', {
       ...user,
       logged_in: true,

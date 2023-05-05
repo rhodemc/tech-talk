@@ -1,9 +1,9 @@
-const createPostHandler = async (event) => {
+const templatePostHandler = async (event) => {
   event.preventDefault();
 
   document.location.replace('/createpost');
 };
 
 document
-  .querySelector('.getNewTemplate')
-  .addEventListener('click', createPostHandler);
+  .querySelector('.new-post-template')
+  .addEventListener('click', templatePostHandler);
