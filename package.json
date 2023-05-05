@@ -9,7 +9,9 @@
     "seed": "node seeds/seed.js",
     "tailwind:css": "postcss public/css/tailwind.css -o public/css/style.css"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -31,5 +33,8 @@
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2"
+  },
+  "engines": {
+    "node": "16.20.0"
   }
 }
